@@ -18,7 +18,7 @@ def get(url_, isfile=False):
 	if isfile is True:
 		return f.read()
 	else:
-		return f.read().decode("UTF-8")
+		return str(f.read())
 
 def getCookies(h):
 	result = ''
