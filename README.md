@@ -8,5 +8,5 @@ Python 3.x
 ```
 git clone https://github.com/HazCod/jungler
 cd jungler
-./jungler "Artist - Songname"
+./jungler.py "Artist - Songname"
 ```
