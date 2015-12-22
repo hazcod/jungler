@@ -14,9 +14,6 @@ def get(url_, isfile=False):
 	global cookies
 	req = urllib.request.Request(url=url_, headers={ 'Cookie' : cookies, 'Referer' : 'http://junglevibe1.net/', 'User-Agent' : 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36' })
 	f = urllib.request.urlopen(req)
-	if '404 Not Found' in str(f.info()):
-		print("Not Found: " + url_)
-		sys.exit(1)
 	cookies += getCookies(str(f.info()))
 	if isfile is True:
 		return f.read()
