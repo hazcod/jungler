@@ -30,6 +30,8 @@ def encodeSearch(search):
 	return 'https://junglevibe1.net' + '/' + tracks + '/' + re.sub(r'[^A-Za-z0-9\s]+', '', search).replace(' ','_') + ".html"
 
 def getResults(page):
+	if 'What you are searching is blocked!' in page:
+		print("Artist is blocked. Specify the song too.")
 	return re.findall('https*://junglevibe1\.net' + '/track/[0-9]+/[0-9]+/[A-z_-]+\.mp3\?dl=1', page)
 
 def search(title):
@@ -82,4 +84,7 @@ def main(userinput):
 	print("Downloaded to " + filename)
 
 if __name__ == "__main__":
-	main(sys.argv[1])
+	if len(sys.argv) != 2:
+		print("Usage: ./jungler.py \"artist - song\"")
+	else:
+		main(sys.argv[1])
