@@ -6,6 +6,7 @@ import urllib.request
 import re
 import sys
 import os.path
+import time
 
 tracks = 'tracks'
 cookies = ''
@@ -66,11 +67,12 @@ def main(userinput):
 
 	print("Saving to " + extractTitle(link))
 	mp3 = None
-	tries = 10
+	tries = 15
 	while (mp3 is None or '404 Not Found' in str(mp3)) and tries > 0:
 		print("Trying to fetch.. (" + str(tries) + " tries left)")
 		mp3 = get(link.replace('dl=1', 'dl=2').replace("http://", "https://"), True)
 		tries = tries - 1
+		time.sleep(0.1)
 
 	if '404 Not Found' in str(mp3):
 		print("Failed to download. Pick another one or retry")
@@ -85,6 +87,6 @@ def main(userinput):
 
 if __name__ == "__main__":
 	if len(sys.argv) != 2:
-		print("Usage: ./jungler.py \"artist - song\"")
+		print("Usage: ./jungler.py \"songname\"")
 	else:
 		main(sys.argv[1])
